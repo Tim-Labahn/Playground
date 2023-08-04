@@ -5,5 +5,5 @@ const woodSword = {
     dmg: 1
 }
 
-const inventory = [woodSword]
-console.log(inventory[0].dmg)
+const inventory = [woodSword.name]
+console.log(inventory[0])

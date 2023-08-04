@@ -29,12 +29,14 @@ function check() {
     if (game[2][1] === "[X]" && game[1][2] === "[X]" && game[0][3] === "[X]") { win = true };
 }
 
+
+
 function round() {
     console.log(game)
     console.log("Player", player, ", what is your move? Do it like this -A1-")
     let move = prompt("");
-
-    if (move === "A1" && game[2][1] === "[ ]") { game[2][1] = turn; switchXO() }
+    //mit function(coardiante eins und zwei)
+    if (move === "A1"  game[2][1] === "[ ]") { game[2][1] = turn; switchXO() }
     if (move === "A2" && game[2][2] === "[ ]") { game[2][2] = turn; switchXO() }
     if (move === "A3" && game[2][3] === "[ ]") { game[2][3] = turn; switchXO() }
     if (move === "B1" && game[1][1] === "[ ]") { game[1][1] = turn; switchXO() }
