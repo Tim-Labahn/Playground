@@ -1,24 +1,61 @@
 const prompt = require("prompt-sync")({ sigint: true });
-let A1 = "[ ]"
-let A2 = "[ ]"
-let A3 = "[ ]"
-let B1 = "[ ]"
-let B2 = "[ ]"
-let B3 = "[ ]"
-let C1 = "[ ]"
-let C2 = "[ ]"
-let C3 = "[ ]"
+let r1 = ["C", "[ ]", "[ ]", "[ ]"]
+let r2 = ["B", "[ ]", "[ ]", "[ ]"]
+let r3 = ["A", "[ ]", "[ ]", "[ ]"]
+let r4 = ["        1      2      3"];
+let game = [r1, r2, r3, r4]
+let turn = "[O]"
+let player = "One"
+let win = false
 
-function game() {
-    console.log("3", A1, "|", A2, "|", A3)
-    console.log("2", B1, "|", B2, "|", B3)
-    console.log("1", C1, "|", C2, "|", C3)
-    console.log("   A      B     C");
+
+function switchXO() {
+    if (turn === "[X]") { turn = "[O]" }
+    else { turn = "[X]" }
 }
-while (true) {
-    console.log(game())
-    let moveX = prompt("Player One, what is your move?");
-
-
-    //const moveO 
+function check() {
+    for (let i = 0; i < 4; i++) {
+        if (game[i][1] === "[X]" && game[i][2] === "[X]" && game[i][3] === "[X]") { win = true };
+        if (game[i][1] === "[O]" && game[i][2] === "[O]" && game[i][3] === "[O]") { win = true };
+    }
+    for (let i = 0; i < 4; i++) {
+        if (game[0][i] === "[O]" && game[1][i] === "[O]" && game[2][i] === "[O]") { win = true };
+        if (game[0][i] === "[X]" && game[1][i] === "[X]" && game[2][i] === "[X]") { win = true };
+    }
+    if (game[0][1] === "[O]" && game[1][2] === "[O]" && game[2][3] === "[O]") { win = true };
+    if (game[0][1] === "[X]" && game[1][2] === "[X]" && game[2][3] === "[X]") { win = true };
+    if (game[2][1] === "[O]" && game[1][2] === "[O]" && game[0][3] === "[O]") { win = true };
+    if (game[2][1] === "[X]" && game[1][2] === "[X]" && game[0][3] === "[X]") { win = true };
 }
+
+function round() {
+    console.log(game)
+    console.log("Player", player, ", what is your move? Do it like this -A1-")
+    let move = prompt("");
+
+    if (move === "A1") if (game[2][1] === "[ ]") { game[2][1] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "A2") if (game[2][2] === "[ ]") { game[2][2] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "A3") if (game[2][3] === "[ ]") { game[2][3] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "B1") if (game[1][1] === "[ ]") { game[1][1] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "B2") if (game[1][2] === "[ ]") { game[1][2] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "B3") if (game[1][3] === "[ ]") { game[1][3] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "C1") if (game[0][1] === "[ ]") { game[0][1] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "C2") if (game[0][1] === "[ ]") { game[0][2] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "C3") if (game[0][3] === "[ ]") { game[0][3] = turn, switchXO() } else (console.log("invalid"))
+}
+
+console.log("Game start")
+while (win === false) {
+
+    check()
+
+    if (turn === "[X]") { player = "One" }
+    if (turn === "[O]") { player = "Two" }
+
+    if (win === false) { round() }
+}
+if (win === true) {
+    console.log(game)
+    console.log("Player", player, "won.")
+}
+

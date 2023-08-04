@@ -7,7 +7,7 @@ let game = [r1, r2, r3, r4]
 let turn = "[O]"
 let player = "One"
 let win = false
-//______Function_________
+
 
 function switchXO() {
     if (turn === "[X]") { turn = "[O]" }
@@ -43,15 +43,15 @@ function round() {
     if (move === "C2") if (game[0][1] === "[ ]") { game[0][2] = turn, switchXO() } else (console.log("invalid"))
     if (move === "C3") if (game[0][3] === "[ ]") { game[0][3] = turn, switchXO() } else (console.log("invalid"))
 }
-//__________Game________________________
+
 console.log("Game start")
 while (win === false) {
-    //_____Win check_________________
+
     check()
-    // X oder O einstelen
+
     if (turn === "[X]") { player = "One" }
     if (turn === "[O]") { player = "Two" }
-    //____________________________________________________________
+
     if (win === false) { round() }
 }
 if (win === true) {
