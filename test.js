@@ -9,6 +9,7 @@ let player = "One"
 let win = false
 
 
+
 function switchXO() {
     if (turn === "[X]") { turn = "[O]" }
     else { turn = "[X]" }
@@ -33,25 +34,22 @@ function round() {
     console.log("Player", player, ", what is your move? Do it like this -A1-")
     let move = prompt("");
 
-    if (move === "A1") if (game[2][1] === "[ ]") { game[2][1] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "A2") if (game[2][2] === "[ ]") { game[2][2] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "A3") if (game[2][3] === "[ ]") { game[2][3] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "B1") if (game[1][1] === "[ ]") { game[1][1] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "B2") if (game[1][2] === "[ ]") { game[1][2] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "B3") if (game[1][3] === "[ ]") { game[1][3] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "C1") if (game[0][1] === "[ ]") { game[0][1] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "C2") if (game[0][1] === "[ ]") { game[0][2] = turn, switchXO() } else (console.log("invalid"))
-    if (move === "C3") if (game[0][3] === "[ ]") { game[0][3] = turn, switchXO() } else (console.log("invalid"))
+    if (move === "A1" && game[2][1] === "[ ]") { game[2][1] = turn; switchXO() }
+    if (move === "A2" && game[2][2] === "[ ]") { game[2][2] = turn; switchXO() }
+    if (move === "A3" && game[2][3] === "[ ]") { game[2][3] = turn; switchXO() }
+    if (move === "B1" && game[1][1] === "[ ]") { game[1][1] = turn; switchXO() }
+    if (move === "B2" && game[1][2] === "[ ]") { game[1][2] = turn; switchXO() }
+    if (move === "B3" && game[1][3] === "[ ]") { game[1][3] = turn; switchXO() }
+    if (move === "C1" && game[0][1] === "[ ]") { game[0][1] = turn; switchXO() }
+    if (move === "C2" && game[0][1] === "[ ]") { game[0][2] = turn; switchXO() }
+    if (move === "C3" && game[0][3] === "[ ]") { game[0][3] = turn; switchXO() }
+    else { console.log("invalid") }
 }
-
 console.log("Game start")
 while (win === false) {
-
     check()
-
     if (turn === "[X]") { player = "One" }
     if (turn === "[O]") { player = "Two" }
-
     if (win === false) { round() }
 }
 if (win === true) {
