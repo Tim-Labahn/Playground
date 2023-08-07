@@ -13,7 +13,7 @@ function addWord(word, definition) {
     vocabularyList.push({ word, definition });
 }
 
-function findWordIndex(name) {
+function findWordIndex(name) {//TODO: das hier ist unnötig
     return vocabularyList.findIndex((item) => item.word === name);
 }
 //----------------------------------------------------------------------
