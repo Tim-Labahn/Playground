@@ -1,7 +1,7 @@
 const prompt = require("prompt-sync")({ sigint: true });
-
+//---------------------------------
 const vocabularyList = [];
-
+//------------------------------
 function showList(arr) {
     console.log("Inventory stores:", arr.length, "items");
     for (let i = 0; i < arr.length; i++) {
@@ -12,14 +12,18 @@ function showList(arr) {
 function addWord(word, definition) {
     vocabularyList.push({ word, definition });
 }
-
+function findWordIndex(name) {
+    return vocabularyList.findIndex((item) => item.word === name);
+}
+let saveWordName = null
+//---------------------------------------------------
 while (true) {
     console.log("Your options: A- add, D- delete, S- Show list, C- Change definition")
     const event = prompt("What is your choice?");
     if (event === "A") {
-        let word = prompt("What do you wanna add?");
+        let name = prompt("What do you wanna add?");
         let definition = prompt("What is the definition?");
-        addWord(word, definition);
+        addWord(name, definition);
     }
     if (event === "S") {
         showList(vocabularyList);
@@ -31,9 +35,10 @@ while (true) {
     }
     if (event === "C") {
         showList(vocabularyList)
-        let word = prompt("Enter the name of the vocabular that you wana change.");
-        let definition = prompt("what do you want the new definition to be?")
-        vocabularyList.splice(vocabularyList.findIndex((a) => a === word), 1)
-        addWord(word, definition)
+        let deleteItem = prompt("Enter the name of what you want to Change?");
+        vocabularyList.splice(vocabularyList.findIndex((a) => a === deleteItem), 1)
+        let name = prompt("What do you wanna Name it?");
+        let definition = prompt("What is the definition?");
+        addWord(name, definition);
     }
 }
